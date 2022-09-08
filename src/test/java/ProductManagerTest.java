@@ -69,4 +69,16 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void RemoveByNonexistentId() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+
+        Product[] actual = manager.repo.removeById(55);
+        Product[] expected = {book1, book2, book3};
+
+        assertArrayEquals(expected, actual);
+    }
 }
