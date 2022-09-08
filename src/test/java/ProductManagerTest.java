@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -76,9 +77,8 @@ public class ProductManagerTest {
         manager.add(book2);
         manager.add(book3);
 
-        Product[] actual = manager.repo.removeById(55);
-        Product[] expected = {book1, book2, book3};
-
-        assertArrayEquals(expected, actual);
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(44);
+        });
     }
 }
