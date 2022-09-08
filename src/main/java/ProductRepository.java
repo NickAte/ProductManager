@@ -14,7 +14,19 @@ public class ProductRepository {
         return products;
     }
 
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
     public Product[] removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("Товара с id"+ " " + id + " " + "нет");
+        }
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {
